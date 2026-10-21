@@ -1,0 +1,4 @@
+# Moteur complet (94 Mo) : utilisé seulement en local, non publié
+engine/stockfish-19-single.wasm
+# Réglages locaux de l'assistant
+.claude/

@@ -1155,7 +1155,13 @@
   // ======================= Démarrage =======================
   // Téléphone : le plan secondaire passe sous l'échiquier, la partie se lit par onglets
   if (window.GACHESS_MOBILE) {
-    document.querySelector('.board-col').appendChild($('plan-box'));
+    const col = document.querySelector('.board-col');
+    // bouton « Pouvoir spécial » juste sous l'échiquier, au-dessus des onglets
+    const powerSlot = document.createElement('div');
+    powerSlot.className = 'mobile-power';
+    powerSlot.appendChild($('btn-power'));
+    col.appendChild(powerSlot);
+    col.appendChild($('plan-box'));
     for (const b of document.querySelectorAll('#mobile-tabs button')) b.onclick = () => Game.setMobileTab(b.dataset.tab);
   }
   // Application installable : cache hors connexion (uniquement en ligne, pour ne pas figer le développement local)

@@ -416,6 +416,7 @@
       this.board = new window.Board($('game-board'), {
         mode: 'play',
         planEl: $('plan-board'),
+        sq: window.GACHESS_MOBILE ? window.GACHESS_CELL : undefined,
         canSelect: sq => this.canSelect(sq),
         movesFrom: sq => this.legal.filter(m => CR.moveFrom(m) === sq),
         onMove: (m, animate) => this.userMove(m, animate),

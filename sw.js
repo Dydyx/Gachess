@@ -3,7 +3,7 @@
  * Les fichiers sont servis depuis le cache puis mis à jour en arrière-plan
  * (la nouvelle version s'applique au lancement suivant). Changer VERSION force un rafraîchissement.
  */
-const VERSION = 'gachess-v3';
+const VERSION = 'gachess-v4';
 const ASSETS = [
   './', 'index.html', 'manifest.webmanifest', 'css/style.css',
   'js/rules.js', 'js/pieces.js', 'js/sound.js', 'js/board.js', 'js/bots.js', 'js/app.js', 'js/ai-worker.js',

@@ -41,12 +41,13 @@
       this.rightStart = -1;
       this.promo = null;
 
-      this.main = this._surface(el, 0, 10, MAIN_SQ);
+      this.main = this._surface(el, 0, 10, this.opts.sq || MAIN_SQ);
+      el.style.width = el.style.height = this.main.size + 'px';
       el.classList.add('board');
       if (this.opts.mode === 'edit') el.classList.add('edit-mode');
       this.arrowsEl = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
       this.arrowsEl.setAttribute('class', 'layer arrows');
-      this.arrowsEl.setAttribute('viewBox', `0 0 ${10 * MAIN_SQ} ${10 * MAIN_SQ}`);
+      this.arrowsEl.setAttribute('viewBox', `0 0 ${this.main.size} ${this.main.size}`);
       el.appendChild(this.arrowsEl);
       this.plan = this.opts.planEl ? this._surface(this.opts.planEl, 1, 8, PLAN_SQ) : null;
       if (this.plan) this.plan.el.classList.add('board', 'plan-board');
@@ -402,7 +403,7 @@
       this._drawArrows();
     }
     _drawArrows() {
-      const svgNS = 'http://www.w3.org/2000/svg', SQ = MAIN_SQ;
+      const svgNS = 'http://www.w3.org/2000/svg', SQ = this.main.sq, k = SQ / 64;
       this.arrowsEl.innerHTML = '';
       const center = s => { const { x, y } = this._xy(s); return [x + SQ / 2, y + SQ / 2]; };
       for (const [key] of this.arrows) {
@@ -417,10 +418,10 @@
         pts.push(center(to));
         const [ax, ay] = pts[pts.length - 2], [bx, by] = pts[pts.length - 1];
         const len = Math.hypot(bx - ax, by - ay), ux = (bx - ax) / len, uy = (by - ay) / len;
-        const head = 24, half = 15, w = 12;
-        const tipX = bx - ux * 5, tipY = by - uy * 5;
+        const head = 24 * k, half = 15 * k, w = 12 * k;
+        const tipX = bx - ux * 5 * k, tipY = by - uy * 5 * k;
         const baseX = tipX - ux * head, baseY = tipY - uy * head;
-        const startPad = pts.length === 2 ? 18 : 0;
+        const startPad = pts.length === 2 ? 18 * k : 0;
         const l0 = Math.hypot(pts[1][0] - pts[0][0], pts[1][1] - pts[0][1]);
         pts[0] = [pts[0][0] + (pts[1][0] - pts[0][0]) / l0 * startPad, pts[0][1] + (pts[1][1] - pts[0][1]) / l0 * startPad];
         pts[pts.length - 1] = [baseX, baseY];

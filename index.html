@@ -16,6 +16,10 @@
       (matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) < 820);
     if (window.GACHESS_MOBILE) {
       document.documentElement.classList.add('mobile');
+      // Échiquier de partie : 10 cases sur toute la largeur, au moins 5 px de marge de chaque côté
+      const vw = Math.min(window.innerWidth || screen.width, screen.width);
+      window.GACHESS_CELL = Math.max(30, Math.floor((vw - 10) / 10));
+      document.documentElement.style.setProperty('--mw', (window.GACHESS_CELL * 10) + 'px');
       // Aucun zoom sur téléphone : ni pincement, ni double appui
       document.querySelector('meta[name=viewport]').setAttribute('content',
         'width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover');

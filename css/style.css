@@ -566,3 +566,10 @@ html.mobile .board .choice-bar { top: calc(100% + 4px); bottom: auto; z-index: 3
 html.mobile, html.mobile body, html.mobile button, html.mobile .screen, html.mobile .modal-shade { touch-action: manipulation; }
 html.mobile .board { touch-action: none; }
 html.mobile input, html.mobile textarea, html.mobile select { font-size: 16px !important; }
+
+/* Téléphone : l'écran de partie suit la largeur de l'échiquier (--mw, calculée selon l'appareil) */
+html.mobile .board-col, html.mobile .game-layout.has-powers .mobile-tabs, html.mobile .side-panel,
+html.mobile .powers-panel, html.mobile .mobile-power, html.mobile .board-col .plan-box { width: var(--mw, 340px); }
+html.mobile .board-col .plan-box .plan-board { align-self: center; }
+html.mobile .board .choice-bar { width: calc(var(--mw, 340px) - 4px); }
+html.mobile #game-board .coord { font-size: 9px; }

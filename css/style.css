@@ -561,3 +561,8 @@ html.mobile .board .choice-bar { top: calc(100% + 4px); bottom: auto; z-index: 3
 .mobile-power .btn-power { background: #6d3a9c; box-shadow: 0 3px 0 0 #43215f; }
 .mobile-power .btn-power:hover { background: #7f48b2; }
 .mobile-power .btn-power.active { outline: 3px solid #c79bff; }
+
+/* Téléphone : pas de zoom au double appui ; champs en 16 px pour éviter le zoom automatique d'iOS */
+html.mobile, html.mobile body, html.mobile button, html.mobile .screen, html.mobile .modal-shade { touch-action: manipulation; }
+html.mobile .board { touch-action: none; }
+html.mobile input, html.mobile textarea, html.mobile select { font-size: 16px !important; }

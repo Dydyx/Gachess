@@ -1257,9 +1257,10 @@
     _rotOk(s, cw) {
       const b = this.b, ring = this._ring(s);
       if (ring.length < 2) return false;
-      let pieces = 0;
-      for (const x of ring) { const q = b[x]; if (q) { pieces++; if (FAM[pType(q)] === K) return false; } }
-      if (!pieces || pieces === ring.length) return false;
+      // l'anneau peut être entièrement occupé, mais la rotation doit changer quelque chose
+      let same = true;
+      for (const x of ring) { const q = b[x]; if (q && FAM[pType(q)] === K) return false; if (q !== b[ring[0]]) same = false; }
+      if (same) return false;
       const n = ring.length;
       for (let i = 0; i < n; i++) {
         const q = b[ring[i]];
